@@ -1,12 +1,18 @@
 package com.addressbook.controller;
 
 
+import com.addressbook.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/contact")
-public class Controller {
+public class AddressController {
+
+    // Dependency Injection
+    @Autowired
+    AddressService addressService;
 
     // testing if REST controller is working or not
     @GetMapping("/test")
@@ -36,6 +42,12 @@ public class Controller {
     @DeleteMapping("/test")
     public ResponseEntity<String> testerDelete() {
         return ResponseEntity.ok("This is Test Delete mapping");
+    }
+
+    // testing if the service layer is working or not
+    @GetMapping("/test/service")
+    public ResponseEntity<String> testerService() {
+        return ResponseEntity.ok(addressService.serviceTest());
     }
 
 }
