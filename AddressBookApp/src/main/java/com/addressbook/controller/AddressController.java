@@ -1,6 +1,7 @@
 package com.addressbook.controller;
 
 
+import com.addressbook.dto.ContactDTO;
 import com.addressbook.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,12 @@ public class AddressController {
     @GetMapping("/test/service")
     public ResponseEntity<String> testerService() {
         return ResponseEntity.ok(addressService.serviceTest());
+    }
+
+    // saving the information of contacts
+    @PostMapping("/save")
+    public ResponseEntity<String> addContact(@RequestBody ContactDTO contactDTO) {
+        return ResponseEntity.ok(addressService.addToContact(contactDTO));
     }
 
 }
