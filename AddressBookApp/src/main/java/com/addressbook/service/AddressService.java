@@ -35,7 +35,6 @@ public class AddressService {
         contact.setPhone(contactDTO.getPhone());
         data.add(contact);
         log.info("successfully added contact");
-
         return "New contact added";
     }
 }
