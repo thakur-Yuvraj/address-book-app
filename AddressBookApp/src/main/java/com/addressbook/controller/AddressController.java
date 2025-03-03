@@ -3,6 +3,7 @@ package com.addressbook.controller;
 
 import com.addressbook.dto.ContactDTO;
 import com.addressbook.service.AddressService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +54,7 @@ public class AddressController {
 
     // saving the information of contacts
     @PostMapping("/save")
-    public ResponseEntity<String> addContact(@RequestBody ContactDTO contactDTO) {
+    public ResponseEntity<String> addContact(@Valid @RequestBody ContactDTO contactDTO) {
         return ResponseEntity.ok(addressService.addToContact(contactDTO));
     }
 
