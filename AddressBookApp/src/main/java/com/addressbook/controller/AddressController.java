@@ -58,4 +58,9 @@ public class AddressController {
         return ResponseEntity.ok(addressService.addToContact(contactDTO));
     }
 
+    @GetMapping("/find/{id}")
+    public ResponseEntity<ContactDTO> findContact(@PathVariable int id) {
+        return ResponseEntity.ok(addressService.findById(id));
+    }
+
 }

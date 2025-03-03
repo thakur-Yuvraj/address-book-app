@@ -2,6 +2,7 @@ package com.addressbook.service;
 
 
 import com.addressbook.dto.ContactDTO;
+import com.addressbook.exception.AddressBookNotFoundException;
 import com.addressbook.model.Contact;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,19 @@ public class AddressService {
         log.info("successfully added contact");
         return "New contact added";
     }
+
+    public ContactDTO findById(int id) {
+        Contact contact = data.stream()
+                .filter(entry -> entry.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new AddressBookNotFoundException(id));
+        ContactDTO contactDTO = new ContactDTO();
+
+        contactDTO.setEmail(contact.getEmail());
+        contactDTO.setPhone(contact.getPhone());
+        contactDTO.setName(contact.getName());
+        return contactDTO;
+    }
+
+
 }
